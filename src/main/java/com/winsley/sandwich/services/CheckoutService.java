@@ -1,4 +1,5 @@
 package com.winsley.sandwich.services;
 
-public class CheckoutService {
+public interface CheckoutService {
+    PurchaseResponse placeOrder(Purchase purchase);
 }
