@@ -1,22 +1,18 @@
 package com.winsley.sandwich.entities;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "cart")
-public class Cart {
+@Table(name = "customer")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -30,13 +26,17 @@ public class Cart {
     @UpdateTimestamp
     private Date last_update;
 
-    @Column(name = "total_price")
-    private BigDecimal total_price;
+    @Column(name = "first_name")
+    private String first_name;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @Column(name = "last_name")
+    private String last_name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart_id")
-    private Set<CartItem> cartItems = new HashSet<>();
+    @Column(name = "phone_number")
+    private String phone_number;
+
+    @Column(name = "email")
+    private String email;
+
+    //one to many relationship to cart
 }
