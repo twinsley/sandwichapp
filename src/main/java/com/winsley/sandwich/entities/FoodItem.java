@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -39,6 +40,15 @@ public class FoodItem {
     @Column(name = "image_url")
     private String image_URL;
 
-    //add relationships to cartitem, location?, ingredient, topping.
-    // Likely all many to many relationships?
+    @ManyToMany
+    @JoinTable(name = "ingredient_fooditem",
+            joinColumns = @JoinColumn(name = "food_item_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Collection<Ingredient> ingredients;
+
+    @ManyToMany(mappedBy = "foodItems")
+    private Collection<Topping> toppings;
+
+    @ManyToMany(mappedBy = "foodItems")
+    private Collection<CartItem> cartItems;
+
 }

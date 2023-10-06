@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -33,4 +34,9 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "sandwich_id")
     private FoodItem sandwich;
+
+    @ManyToMany
+    @JoinTable(name = "fooditem_cartitem",
+            joinColumns = @JoinColumn(name = "cart_item_id"), inverseJoinColumns = @JoinColumn(name = "food_item_id"))
+    private Collection<FoodItem> foodItem;
 }

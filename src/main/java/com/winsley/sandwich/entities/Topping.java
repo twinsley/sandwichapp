@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -39,6 +40,8 @@ public class Topping {
     @Column(name = "image_url")
     private String image_url;
 
-    //many to many or many to one relationship to food item?
-    //Want to allow adding toppings, but not to all items.
+    @ManyToMany
+    @JoinTable(name = "topping_fooditem",
+            joinColumns = @JoinColumn(name = "topping_id"), inverseJoinColumns = @JoinColumn(name = "fooditem_id"))
+    private Collection<FoodItem> foodItems;
 }

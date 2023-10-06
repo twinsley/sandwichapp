@@ -47,8 +47,6 @@ public class Location {
     @Column(name = "phone_number")
     private String phone_number;
 
-    //one to many relationship to cart to allow setting the location for the food.
-    //Set location automatically? Probably default to one location.
 }
 
 

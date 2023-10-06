@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -38,5 +40,6 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    //one to many relationship to cart
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer_id")
+    private Set<Cart> carts = new HashSet<>();
 }

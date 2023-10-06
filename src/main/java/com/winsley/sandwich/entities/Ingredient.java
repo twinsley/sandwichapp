@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -36,6 +37,7 @@ public class Ingredient {
     @Column(name = "price")
     private BigDecimal price;
 
-    // many to many relationship to fooditem
+    @ManyToMany(mappedBy = "ingredients")
+    private Collection<FoodItem> foodItems;
 
 }
