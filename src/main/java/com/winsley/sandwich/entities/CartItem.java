@@ -38,5 +38,5 @@ public class CartItem {
     @ManyToMany
     @JoinTable(name = "fooditem_cartitem",
             joinColumns = @JoinColumn(name = "cart_item_id"), inverseJoinColumns = @JoinColumn(name = "food_item_id"))
-    private Collection<FoodItem> foodItem;
+    private Collection<FoodItem> foodItems;
 }

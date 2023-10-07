@@ -33,11 +33,14 @@ public class Cart {
     @Column(name = "total_price")
     private BigDecimal total_price;
 
+    @Column(name = "status")
+    private Status status;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItems = new HashSet<>();
 
 }

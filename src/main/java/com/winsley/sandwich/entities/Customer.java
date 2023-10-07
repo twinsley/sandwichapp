@@ -40,6 +40,6 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Cart> carts = new HashSet<>();
 }
