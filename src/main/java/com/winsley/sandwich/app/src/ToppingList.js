@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonGroup, Container, Table,  } from 'reactstrap';
+import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
-const FoodItemList = () => {
+const ToppingList = () => {
 
-    const [foodItems, setFoodItems] = useState([]);
+    const [toppings, setToppings] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
 
-        fetch('/api/foodItems')
+        fetch('/api/toppings')
             .then(response => response.json())
             .then(data => {
-                setFoodItems(data._embedded.foodItems);
+                setToppings(data._embedded.toppings);
                 setLoading(false);
             })
     }, []);
 
     const remove = async (id) => {
-        await fetch(`/api/foodItems/${id}`, {
+        await fetch(`/api/toppings/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }).then(() => {
-            let updatedFoodItem = [...foodItems].filter(i => i.id !== id);
-            setFoodItems(updatedFoodItem);
+            let updatedTopping = [...toppings].filter(i => i.id !== id);
+            setToppings(updatedTopping);
         });
     }
 
@@ -35,16 +35,16 @@ const FoodItemList = () => {
         return <p>Loading...</p>;
     }
 
-    const foodItemList = foodItems.map(foodItem => {
-        return <tr key={foodItem.id}>
-            <td style={{whiteSpace: 'nowrap'}}>{foodItem.name}</td>
-            <td>{foodItem.description}</td>
-            <td>{foodItem.price}</td>
-            <td>{foodItem.ingredients}</td>
+    const toppingList = toppings.map(topping => {
+        return <tr key={topping.id}>
+            <td style={{whiteSpace: 'nowrap'}}>{topping.name}</td>
+            <td>{topping.description}</td>
+            <td>{topping.price}</td>
+            <td></td>
             <td>
                 <ButtonGroup>
-                    <Button size="sm" color="primary" tag={Link} to={"/foodItems/" + foodItem.id}>Edit</Button>
-                    <Button size="sm" color="danger" onClick={() => remove(foodItem.id)}>Delete</Button>
+                    <Button size="sm" color="primary" tag={Link} to={"/toppings/" + topping.id}>Edit</Button>
+                    <Button size="sm" color="danger" onClick={() => remove(topping.id)}>Delete</Button>
                 </ButtonGroup>
             </td>
         </tr>
@@ -64,12 +64,12 @@ const FoodItemList = () => {
                         <th width="15%">Name</th>
                         <th width="20%">Description</th>
                         <th width="10%">Price</th>
-                        <th width="50%">Ingredients</th>
+                        <th className="w-50"></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    {foodItemList}
+                    {toppingList}
                     </tbody>
                 </Table>
             </Container>
@@ -77,4 +77,4 @@ const FoodItemList = () => {
     );
 };
 
-export default FoodItemList;
+export default ToppingList;

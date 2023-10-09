@@ -9,12 +9,11 @@ const FoodItemEdit = () => {
         description: '',
         price: '',
         image_URL: '',
-        ingredients: [],
+        ingredients: '',
     };
     const [foodItem, setFoodItem] = useState(initialFormState);
     const navigate = useNavigate();
     const { id } = useParams();
-    const [ingredients, setIngredients] = useState([])
 
     useEffect(() => {
         if (id !== 'new') {
@@ -22,9 +21,6 @@ const FoodItemEdit = () => {
                 .then(response => response.json())
                 .then(data => setFoodItem(data));
         }
-        fetch(`/api/ingredients`)
-            .then(response => response.json())
-            .then(data => setIngredients(data._embedded.ingredients))
     }, [id, setFoodItem]);
 
     const handleChange = (event) => {
@@ -57,26 +53,23 @@ const FoodItemEdit = () => {
                 {title}
                 <Form onSubmit={handleSubmit}>
                     <div className="row">
-                    <FormGroup className="col-md-4 mb-3">
+                        <div className="col-md-4 mb-3">
+                    <FormGroup>
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={foodItem.name || ''}
                                onChange={handleChange} autoComplete="name"/>
                     </FormGroup>
-                        <FormGroup className="col-md-4 mb-3">
+                        <FormGroup>
                             <Label for="price">Price</Label>
                             <Input type="number" name="price" id="price" value={foodItem.price || ''}
                                    onChange={handleChange} autoComplete="price"/>
                         </FormGroup>
-                        {/*TODO get ingredients selector working*/}
-                        {/*<FormGroup className="col-md-4 mb-3">*/}
-                        {/*    <select multiple name="ingredients" id="ingredients" defaultValue={foodItem.ingredients || ''}*/}
-                        {/*           onChange={handleChange} autoComplete="ingredients">*/}
-                        {/*    <option value="">Select the ingredients</option>*/}
-                        {/*    {ingredients.map(ingredient => (*/}
-                        {/*        <option key={ingredient.id}>*/}
-                        {/*            {ingredient.name}*/}
-                        {/*        </option>))} </select>*/}
-                        {/*</FormGroup>*/}
+                        </div>
+                        <div className="col-md-4 mb-3">
+                            <Label for="ingredients">Ingredients / Assembly Instructions</Label>
+                            <Input type="textarea" id="ingredients" name="ingredients" value={foodItem.ingredients || ''}
+                                   onChange={handleChange} cols="60" rows="5"/>
+                        </div>
                     </div>
                     <FormGroup>
                         <Label for="description">Description</Label>

@@ -40,10 +40,8 @@ public class FoodItem {
     @Column(name = "image_url")
     private String image_URL;
 
-    @ManyToMany
-    @JoinTable(name = "ingredient_fooditem",
-            joinColumns = @JoinColumn(name = "food_item_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-    private Collection<Ingredient> ingredients;
+    @Column(name = "ingredients")
+    private String ingredients;
 
     @ManyToMany(mappedBy = "foodItems")
     private Collection<Topping> toppings;

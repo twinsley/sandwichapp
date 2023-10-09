@@ -16,7 +16,6 @@ public class RestDataConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(Topping.class);
         config.exposeIdsFor(Customer.class);
         config.exposeIdsFor(FoodItem.class);
-        config.exposeIdsFor(Ingredient.class);
         config.exposeIdsFor(Location.class);
     }
 }
