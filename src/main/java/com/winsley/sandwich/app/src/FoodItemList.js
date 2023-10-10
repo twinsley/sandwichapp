@@ -53,7 +53,7 @@ const FoodItemList = () => {
     return (
         <div>
             <AppNavbar/>
-            <Container fluid>
+            <Container>
                 <div className="float-end">
                     <Button color="success" tag={Link} to="/fooditems/new">Add Menu Item</Button>
                 </div>

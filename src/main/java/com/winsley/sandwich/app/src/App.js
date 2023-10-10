@@ -6,6 +6,7 @@ import FoodItemList from './FoodItemList';
 import FoodItemEdit from './FoodItemEdit';
 import ToppingList from "./ToppingList";
 import ToppingEdit from "./ToppingEdit";
+import ReportList from "./reportList";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path='/foodItems/:id' element={<FoodItemEdit/>}/>
             <Route path='/Toppings' exact={true} element={<ToppingList/>}/>
             <Route path='/toppings/:id' element={<ToppingEdit/>}/>
+            <Route path='/reports' exact={true} element={<ReportList/>}/>
         </Routes>
       </Router>
   )
