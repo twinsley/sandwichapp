@@ -3,22 +3,22 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardText, CardTitle, Container} from "reactstrap";
 
 
-const MenuPage = () => {
-    const [foodItems, setFoodItems] = useState([]);
+const ToppingSelector = () => {
+    const [toppings, setToppings] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
 
-        fetch('/api/foodItems')
+        fetch('/api/toppings')
             .then(response => response.json())
             .then(data => {
-                setFoodItems(data._embedded.foodItems);
+                setToppings(data._embedded.toppings);
                 setLoading(false);
             })
     }, []);
 
-    const menuCards = foodItems.map(foodItem => {
+    const toppingCards = toppings.map(topping => {
         return <Card
             style={{
                 width: '18rem',
@@ -26,20 +26,17 @@ const MenuPage = () => {
             }}
         >
             <img
-                alt={foodItem.name}
-                src={foodItem.image_URL}
-                width="260px"
-                height="260px"
-                className="pt-3"
+                alt={topping.name}
+                src={topping.image_URL}
             />
-            <CardBody >
+            <CardBody>
                 <CardTitle tag="h5">
-                    {foodItem.name}
+                    {topping.name}
                 </CardTitle>
                 <CardText>
-                    {foodItem.description}
+                    {topping.description}
                 </CardText>
-                <Button >
+                <Button>
                     {/*TODO make buy button add item to cart and prompt for toppings in popup*/}
                     Buy
                 </Button>
@@ -49,9 +46,9 @@ const MenuPage = () => {
 
     return(
         <Container>
-            <div className="row">{menuCards}</div>
+            <div className="row">{toppingCards}</div>
         </Container>
     )
 };
 
-export default MenuPage;
+export default ToppingSelector;

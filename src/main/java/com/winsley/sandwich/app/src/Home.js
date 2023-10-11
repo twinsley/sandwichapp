@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import AppNavbar from './AppNavbar';
+
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 import MenuPage from "./menuPage";
 import Checkout from "./Checkout";
-
 const Home = () => {
     return (
         <div >
