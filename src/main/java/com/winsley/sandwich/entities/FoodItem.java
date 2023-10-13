@@ -43,8 +43,6 @@ public class FoodItem {
     @Column(name = "ingredients")
     private String ingredients;
 
-    @OneToMany
-    private Collection<Topping> toppings;
 
     @ManyToMany(mappedBy = "foodItems")
     private Collection<CartItem> cartItems;

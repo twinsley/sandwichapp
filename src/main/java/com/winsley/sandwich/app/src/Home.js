@@ -43,7 +43,7 @@ const Home = () => {
                     {foodItem.description}
                 </CardText>
                 <Button >
-                    {/*TODO make buy button add item to cart and prompt for toppings in popup*/}
+                    {/*TODO make buy button add item to cart*/}
                     Buy
                 </Button>
             </CardBody>
@@ -100,13 +100,11 @@ const Home = () => {
 
                 <NavbarBrand tag={Link} to="/" style={{color: "whitesmoke"}} className="ms-3">Home</NavbarBrand>
                 <NavLink tag={Link} to="/FoodItems" style={{color: "lightgray"}} className="px-3">Manage Menu Items</NavLink>
-                <NavLink tag={Link} to="/Toppings" style={{color: "lightgray"}} className="px-3">Manage Toppings</NavLink>
                 <NavLink tag={Link} to="/reports" style={{color: "lightgray"}} className="px-3">Reports</NavLink>
 
                 <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
                 <Collapse isOpen={isOpen} navbar>
                 </Collapse>
-                {/*//TODO get search working*/}
                 <div className="align-content-end me-3">
                     <InputGroup size="sm" style={{width: "350px"}} >
                         <Button onClick={search} >
@@ -122,6 +120,7 @@ const Home = () => {
             <Container fluid className="row" style={{height: "89vh"}}>
                 <div className="col-9"><div className="row">{menuCards}</div></div>
                 <div className="col-3">
+                    {/*TODO add cart and checkout functionality*/}
                     <div className="h-100 bg-secondary-subtle">
                     <Table striped bordered>
                         <thead>

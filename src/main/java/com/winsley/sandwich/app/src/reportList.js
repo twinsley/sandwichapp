@@ -19,7 +19,8 @@ const Reports = () => {
                 setLoading(false);
             })
     }, []);
-    // TODO redo reports so it returns reports instead of carts. Need at least two reports.
+    // TODO redo reports so it returns reports instead of carts. Need at least two reports. Possibly sales in the last day,
+    // sales by item in the last month, and sales by item in the last year
     const reportList = reports.map(report => {
         return <Card
             style={{

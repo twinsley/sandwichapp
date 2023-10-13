@@ -13,7 +13,6 @@ public class RestDataConfig implements RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors){
-        config.exposeIdsFor(Topping.class);
         config.exposeIdsFor(Customer.class);
         config.exposeIdsFor(FoodItem.class);
         config.exposeIdsFor(Location.class);
