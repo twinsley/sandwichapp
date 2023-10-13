@@ -10,6 +10,7 @@ const ToppingEdit = () => {
         price: '',
         image_URL: '',
         ingredients: '',
+        foodItems: '',
     };
     const [topping, setTopping] = useState(initialFormState);
     const navigate = useNavigate();
@@ -53,6 +54,11 @@ const ToppingEdit = () => {
                 {title}
                 <Form onSubmit={handleSubmit}>
                     <div className="row">
+                        <FormGroup className="col-md-4 mb-3">
+                            <Label for="foodItem">Menu item ID</Label>
+                            <Input type="text" name="foodItem" id="foodItem" value={topping.foodItems || ''}
+                                   onChange={handleChange} autoComplete="foodItem"/>
+                        </FormGroup>
                             <FormGroup className="col-md-4 mb-3">
                                 <Label for="name">Name</Label>
                                 <Input type="text" name="name" id="name" value={topping.name || ''}

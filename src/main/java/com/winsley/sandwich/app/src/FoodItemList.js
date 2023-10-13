@@ -1,11 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { Button, ButtonGroup, Container, Table,  } from 'reactstrap';
-import AppNavbar from './AppNavbar';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+    Button,
+    ButtonGroup,
+    Collapse,
+    Container, Input, InputGroup,
+    Navbar,
+    NavbarBrand,
+    NavbarToggler,
+    NavLink,
+    Table,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 const FoodItemList = () => {
-
     const [foodItems, setFoodItems] = useState([]);
+    const [searchFoodItems, setSearchFoodItems] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [input, setInput] = useState("");
+
+    let searchResults = [];
+    function search() {
+        searchFoodItems.forEach(function(item) {
+            if(item.name.toLowerCase().includes(input.toLowerCase()) || item.description.toLowerCase().includes(input.toLowerCase())) {
+            searchResults.push(item);
+
+        }})
+        if (searchResults.length > 0) {
+            setFoodItems(searchResults);
+        } else {
+            alert("No results found.")
+        }
+    }
+    const handleChange = (event) => {
+        const { name, value } = event.target
+        setInput(value)
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -14,6 +43,7 @@ const FoodItemList = () => {
             .then(response => response.json())
             .then(data => {
                 setFoodItems(data._embedded.foodItems);
+                setSearchFoodItems(data._embedded.foodItems);
                 setLoading(false);
             })
     }, []);
@@ -37,6 +67,7 @@ const FoodItemList = () => {
 
     const foodItemList = foodItems.map(foodItem => {
         return <tr key={foodItem.id}>
+            <td>{foodItem.id}</td>
             <td style={{whiteSpace: 'nowrap'}}>{foodItem.name}</td>
             <td>{foodItem.description}</td>
             <td>{foodItem.price}</td>
@@ -52,7 +83,30 @@ const FoodItemList = () => {
 
     return (
         <div>
-            <AppNavbar/>
+            <Navbar color="dark" dark expand="md" className="container-fluid">
+
+
+                <NavbarBrand tag={Link} to="/" style={{color: "whitesmoke"}} className="ms-3">Home</NavbarBrand>
+                <NavLink tag={Link} to="/FoodItems" style={{color: "lightgray"}} className="px-3">Manage Menu Items</NavLink>
+                <NavLink tag={Link} to="/Toppings" style={{color: "lightgray"}} className="px-3">Manage Toppings</NavLink>
+                <NavLink tag={Link} to="/reports" style={{color: "lightgray"}} className="px-3">Reports</NavLink>
+
+                <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
+                <Collapse isOpen={isOpen} navbar>
+                </Collapse>
+                {/*//TODO get search working*/}
+                <div className="align-content-end me-3">
+                    <InputGroup size="sm" style={{width: "350px"}} >
+                        <Button onClick={search} >
+                            Search
+                        </Button>
+                        <Input onChange={handleChange} onKeyDown={event => {
+                            if (event.key === "Enter") {
+                                search();}}}/>
+                    </InputGroup>
+                </div>
+
+            </Navbar>
             <Container>
                 <div className="float-end">
                     <Button color="success" tag={Link} to="/fooditems/new">Add Menu Item</Button>
@@ -61,10 +115,11 @@ const FoodItemList = () => {
                 <Table className="mt-4 w-100">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th width="15%">Name</th>
                         <th width="20%">Description</th>
                         <th width="10%">Price</th>
-                        <th width="50%">Ingredients</th>
+                        <th width="50%">Ingredients/Instructions</th>
                         <th></th>
                     </tr>
                     </thead>

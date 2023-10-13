@@ -40,8 +40,8 @@ public class Topping {
     @Column(name = "image_url")
     private String image_url;
 
-    @ManyToMany
-    @JoinTable(name = "topping_fooditem",
-            joinColumns = @JoinColumn(name = "topping_id"), inverseJoinColumns = @JoinColumn(name = "fooditem_id"))
-    private Collection<FoodItem> foodItems;
+    @ManyToOne
+    private FoodItem foodItems;
+
+    //TODO tweak this to have another column with the id
 }
