@@ -28,6 +28,10 @@ import { EditCustomerComponent } from './views/edit-customer/edit-customer.compo
 import { CartSummaryComponent } from './views/cart-summary/cart-summary.component';
 import { OrderConfirmationComponent } from './views/order-confirmation/order-confirmation.component';
 import {PurchaseDataService} from "./services/purchase-data.service";
+import { MenuEditComponent } from './views/menu-edit/menu-edit.component';
+import { ReportComponent } from './views/report/report.component';
+import { SearchComponent } from './views/search/search.component';
+import { MenuEditDetailComponent } from './views/menu-edit-detail/menu-edit-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import {PurchaseDataService} from "./services/purchase-data.service";
     EditCustomerComponent,
     CartSummaryComponent,
     OrderConfirmationComponent,
+    MenuEditComponent,
+    ReportComponent,
+    SearchComponent,
+    MenuEditDetailComponent,
   ],
   imports: [
     BrowserModule,
