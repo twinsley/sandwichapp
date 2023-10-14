@@ -32,6 +32,9 @@ import { MenuEditComponent } from './views/menu-edit/menu-edit.component';
 import { ReportComponent } from './views/report/report.component';
 import { SearchComponent } from './views/search/search.component';
 import { MenuEditDetailComponent } from './views/menu-edit-detail/menu-edit-detail.component';
+import { ToppingEditComponent } from './views/topping-edit/topping-edit.component';
+import { ToppingEditDetailComponent } from './views/topping-edit-detail/topping-edit-detail.component';
+import { MenuAddComponent } from './views/menu-add/menu-add.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { MenuEditDetailComponent } from './views/menu-edit-detail/menu-edit-deta
     ReportComponent,
     SearchComponent,
     MenuEditDetailComponent,
+    ToppingEditComponent,
+    ToppingEditDetailComponent,
+    MenuAddComponent,
   ],
   imports: [
     BrowserModule,
