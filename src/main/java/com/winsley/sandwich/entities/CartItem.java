@@ -10,13 +10,14 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
+@Table(name="cart_items")
 @Getter
 @Setter
-@Table(name = "cart_item")
 public class CartItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "cart_item_id")
     private Long id;
 
     @Column(name = "create_date")
@@ -32,11 +33,11 @@ public class CartItem {
     private Cart cart;
 
     @ManyToOne
-    @JoinColumn(name = "sandwich_id")
-    private FoodItem sandwich;
+    @JoinColumn(name = "menuItem_id")
+    private MenuItem menuItem;
 
     @ManyToMany
-    @JoinTable(name = "fooditem_cartitem",
-            joinColumns = @JoinColumn(name = "cart_item_id"), inverseJoinColumns = @JoinColumn(name = "food_item_id"))
-    private Collection<FoodItem> foodItems;
+    @JoinTable(name = "topping_cartitem",
+    joinColumns = @JoinColumn(name = "cart_item_id"), inverseJoinColumns = @JoinColumn(name = "topping_id"))
+    private Collection<Topping> toppings;
 }

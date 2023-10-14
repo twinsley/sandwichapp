@@ -11,37 +11,37 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
+@Table(name="toppings")
 @Getter
 @Setter
-@Table(name = "side")
 public class Topping {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "topping_id")
     private Long id;
 
     @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
+    @Column(name = "topping_price")
+    private BigDecimal topping_price;
+
+    @Column(name = "topping_title")
+    private String topping_title;
+
+    @Column(name = "image_url", length = 2500)
+    private String image_URL;
+
     @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "price")
-    private BigDecimal price;
-
-    @Column(name = "image_url")
-    private String image_url;
-
     @ManyToOne
-    private FoodItem foodItems;
+    @JoinColumn(name = "menuItem_id")
+    private MenuItem menuItem_id;
 
-    //TODO tweak this to have another column with the id
+    @ManyToMany(mappedBy = "toppings")
+    private Collection<CartItem> cartItems;
 }

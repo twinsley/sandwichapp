@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class CheckoutServiceImpl implements CheckoutService{
@@ -18,30 +19,37 @@ public class CheckoutServiceImpl implements CheckoutService{
     private CartRepository cartRepository;
 
     public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository) {
-        this.cartRepository = cartRepository;
         this.customerRepository = customerRepository;
+        this.cartRepository = cartRepository;
     }
 
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
-        try{
+        try {
             Cart cart = purchase.getCart();
+            String orderTrackingNumber = generateOrderTrackingNumber();
+
             Set<CartItem> cartItems = purchase.getCartItems();
+
+            cartItems.forEach(item -> cart.add(item));
+
             Customer customer = purchase.getCustomer();
 
+            cart.setOrderTrackingNumber(orderTrackingNumber);
             cart.setCustomer(customer);
             cart.setCartItems(cartItems);
             cart.setStatus(Status.ordered);
 
             cartRepository.save(cart);
 
-
-        } catch (Exception e) {
+        return new PurchaseResponse(orderTrackingNumber);
+        } catch(Exception e) {
             return null;
         }
+    }
 
-
-        return null;
+    private String generateOrderTrackingNumber() {
+        return UUID.randomUUID().toString();
     }
 }

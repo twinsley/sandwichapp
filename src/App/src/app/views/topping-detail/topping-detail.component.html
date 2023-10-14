@@ -1,0 +1,27 @@
+
+<div class="content-detail">
+  <button class="button-31 back-button">
+    <a onclick="history.back()">Back</a>
+  </button>
+  <div>
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <img id="topping-image" src="{{topping.image_URL}}">
+        </td>
+        <td class="topping-info-cell">
+          <div class="topping-info-div" >
+            <h2 class="topping-title">{{topping.topping_title}}</h2>
+            <p>${{topping.topping_price | number:'1.2-2'}}</p>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <button class="button-31" id="select-toppings-button" (click)="addToCart(toppingId, menuItemId)">
+              <a>Add Topping</a>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+

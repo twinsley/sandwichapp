@@ -11,35 +11,53 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name="customers")
 @Getter
 @Setter
-@Table(name = "customer")
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "customer_id")
     private Long id;
+
+    @Column(name = "address", nullable = false)
+    private String address;
 
     @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
+    @Column(name = "customer_first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "customer_last_name", nullable = false)
+    private String lastName;
+
     @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 
-    @Column(name = "first_name")
-    private String first_name;
+    @Column(name = "phone", nullable = false)
+    private String phone;
 
-    @Column(name = "last_name")
-    private String last_name;
+    @Column(name = "postal_code", nullable = false)
+    private String postal_code;
 
-    @Column(name = "phone_number")
-    private String phone_number;
-
-    @Column(name = "email")
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "division_id", nullable = false)
+    private State state;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Cart> carts = new HashSet<>();
+
+    public void add(Cart cart) {
+        if (cart != null) {
+            if (carts == null) {
+                carts = new HashSet<>();
+            }
+            carts.add(cart);
+            cart.setCustomer(this);
+        }
+    }
 }

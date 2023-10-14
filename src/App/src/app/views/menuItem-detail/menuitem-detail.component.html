@@ -1,0 +1,25 @@
+
+<div class="content-detail">
+  <button class="button-31 back-button" [routerLink]="['/menuItem']"><a>Back</a></button>
+  <div >
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <img id="menuItem-image" src="{{menuItem.image_URL}}">
+        </td>
+        <td class="menuItem-info-cell">
+          <div class="menuItem-info-div" >
+            <h2 class="menuItem-title">{{menuItem.menuItem_title}}</h2>
+            <p>${{menuItem.price | number:'1.2-2'}}</p>
+            <button class="button-31 select-toppings" [routerLink]="['/menuItem', menuItem.id, 'toppings']">
+              <a>Select Toppings</a>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    <h2>Description</h2>
+    <p>{{menuItem.description}}</p>
+  </div>
+</div>
