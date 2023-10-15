@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 @Configuration
 @CrossOrigin(value = "https://localhost:4200")
 public class RestDataConfig implements RepositoryRestConfigurer {
-//TODO fix CORS policy
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         config.exposeIdsFor(Country.class);

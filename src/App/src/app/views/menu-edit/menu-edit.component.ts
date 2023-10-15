@@ -77,6 +77,7 @@ export class MenuEditComponent implements OnInit {
       this.http.delete(this.menuItemUrl + "/" + id).subscribe(
         response => {
           console.log("Item deleted successfully:", response);
+          this.ngOnInit()
         },
         error => {
           console.error("Error deleting item:", error);
@@ -91,8 +92,10 @@ export class MenuEditComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
+        console.log("next")
         if (val) {
-          this.getMenuItems();
+          console.log("refreshing")
+          this.ngOnInit();
         }
       }
     });
@@ -101,8 +104,10 @@ export class MenuEditComponent implements OnInit {
     const dialogRef = this.dialog.open(MenuEditDetailComponent);
     dialogRef.afterClosed().subscribe({
       next: (val) => {
+        console.log("next")
         if (val) {
-          this.getMenuItems();
+          console.log("refreshing")
+          this.ngOnInit();
         }
       },
     });
