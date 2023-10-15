@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
 
@@ -7,6 +7,11 @@ import {map} from 'rxjs/operators';
 
 import {MenuItemApiResponse} from '../../model/menuItem-api-reponse';
 import {Menuitem} from '../../model/menuItem';
+import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatDialog} from "@angular/material/dialog";
+import {MenuEditDetailComponent} from "../menu-edit-detail/menu-edit-detail.component";
 
 @Component({
   selector: 'app-menu-edit',
@@ -19,8 +24,20 @@ export class MenuEditComponent implements OnInit {
 
   // menuItems for the page
   menuItems: Menuitem[] = [];
+  displayedColumns: string[] = [
+    'id',
+    'menuItem_title',
+    'description',
+    'price',
+    'last_update',
+  ];
+  dataSource!: MatTableDataSource<any>;
 
-  constructor(private http: HttpClient) { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private http: HttpClient, private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
 
@@ -30,9 +47,14 @@ export class MenuEditComponent implements OnInit {
         menuItem.id = parseInt(parsedId);
       });
       this.menuItems = menuItems;
+      this.dataSource = new MatTableDataSource(menuItems);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
 
+
   }
+
   getMenuItems(): Observable<Menuitem[]> {
     return this.http.get<MenuItemApiResponse>(this.menuItemUrl)
       .pipe(
@@ -40,4 +62,48 @@ export class MenuEditComponent implements OnInit {
       )
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  deleteMenuItem(id: number) {
+    let confirm = window.confirm("Are you sure you want to delete this employee?");
+    if (confirm) {
+      this.http.delete(this.menuItemUrl + "/" + id).subscribe(
+        response => {
+          console.log("Item deleted successfully:", response);
+        },
+        error => {
+          console.error("Error deleting item:", error);
+        }
+      );
+    }
+  }
+
+  openEditForm(data: any) {
+    const dialogRef = this.dialog.open(MenuEditDetailComponent, {
+      data,
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getMenuItems();
+        }
+      }
+    });
+  }
+  openAddEditFormDialog() {
+    const dialogRef = this.dialog.open(MenuEditDetailComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getMenuItems();
+        }
+      },
+    });
+  }
 }

@@ -18,7 +18,7 @@ mat-sidenav {
   display: flex;
   justify-content: left;
   align-items: flex-start;
-
+  flex-wrap: wrap;
   font-size: 1.3rem;
 }
 

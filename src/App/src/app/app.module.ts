@@ -35,6 +35,12 @@ import { MenuEditDetailComponent } from './views/menu-edit-detail/menu-edit-deta
 import { ToppingEditComponent } from './views/topping-edit/topping-edit.component';
 import { ToppingEditDetailComponent } from './views/topping-edit-detail/topping-edit-detail.component';
 import { MenuAddComponent } from './views/menu-add/menu-add.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -70,7 +76,13 @@ import { MenuAddComponent } from './views/menu-add/menu-add.component';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSortModule
   ],
   providers: [
     PurchaseDataService
