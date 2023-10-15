@@ -30,6 +30,7 @@ export class MenuEditComponent implements OnInit {
     'description',
     'price',
     'last_update',
+      'action',
   ];
   dataSource!: MatTableDataSource<any>;
 
@@ -71,7 +72,7 @@ export class MenuEditComponent implements OnInit {
   }
 
   deleteMenuItem(id: number) {
-    let confirm = window.confirm("Are you sure you want to delete this employee?");
+    let confirm = window.confirm("Are you sure you want to delete this item?");
     if (confirm) {
       this.http.delete(this.menuItemUrl + "/" + id).subscribe(
         response => {
