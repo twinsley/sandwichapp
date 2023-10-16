@@ -38,10 +38,10 @@ public class Topping {
     @UpdateTimestamp
     private Date last_update;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "menuItem_id")
     private MenuItem menuItem_id;
 
-    @ManyToMany(mappedBy = "toppings")
+    @ManyToMany(mappedBy = "toppings", fetch = FetchType.EAGER)
     private Collection<CartItem> cartItems;
 }

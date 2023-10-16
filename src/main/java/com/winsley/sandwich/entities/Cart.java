@@ -45,11 +45,11 @@ public class Cart {
     @UpdateTimestamp
     private Date last_update;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id" )
     private Customer customer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart", fetch = FetchType.EAGER)
     private Set<CartItem> cartItems = new HashSet<>();
 
     public void add(CartItem item) {

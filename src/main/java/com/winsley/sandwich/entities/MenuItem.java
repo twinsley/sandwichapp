@@ -1,5 +1,6 @@
 package com.winsley.sandwich.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,9 +43,11 @@ public class MenuItem {
     @Column(name = "menuItem_title")
     private String menuItem_title;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menuItem")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menuItem", fetch = FetchType.EAGER)
     private Set<CartItem> cartItems = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menuItem_id")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menuItem_id", fetch = FetchType.EAGER)
     private Set<Topping> toppings = new HashSet<>();
 }

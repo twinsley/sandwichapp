@@ -16,7 +16,7 @@ import {ReportApiResponse} from "../../model/report-api-response";
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  reportUrl = 'http://localhost:8080/api/report';
+  reportUrl = 'http://localhost:8080/api/report/sales';
 
   // menuItems for the page
   reports: Report[] = [];

@@ -30,7 +30,7 @@ public class State {
     @Column(name = "last_update")
     private Date last_update;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
 

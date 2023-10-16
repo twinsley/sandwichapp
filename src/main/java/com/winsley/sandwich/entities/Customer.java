@@ -1,5 +1,6 @@
 package com.winsley.sandwich.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,8 +48,8 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "division_id", nullable = false)
     private State state;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.EAGER)
     private Set<Cart> carts = new HashSet<>();
 
     public void add(Cart cart) {
