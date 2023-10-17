@@ -1,11 +1,8 @@
-import {Report} from "./report";
-
+import { Menuitem } from './menuItem';
 export class ReportApiResponse {
 
     constructor(
-        public _embedded: { reports: Report[] },
-        public _links: Object[],
-        public page: Object
+        public  testingReports: Menuitem[],
     ) {
     }
 }

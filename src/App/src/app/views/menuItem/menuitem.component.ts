@@ -113,9 +113,6 @@ export class MenuitemComponent implements OnInit {
       )
   }
 
-  getAllCustomers(): Observable<CustomerDto[]> {
-    return this.http.get<CustomerDto[]>(this.customerUrl);
-  }
 
   getMenuItems(): Observable<Menuitem[]> {
     return this.http.get<MenuItemApiResponse>(this.menuItemUrl)

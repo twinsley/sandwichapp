@@ -1,13 +1,15 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {Report} from "../../model/report";
 import {ReportApiResponse} from "../../model/report-api-response";
+import {Menuitem} from '../../model/menuItem';
+import {MenuItemApiResponse} from '../../model/menuItem-api-reponse';
 
 
 @Component({
@@ -16,15 +18,17 @@ import {ReportApiResponse} from "../../model/report-api-response";
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  reportUrl = 'http://localhost:8080/api/report/sales';
+  menuItemUrl = 'http://localhost:8080/api/menuItems';
 
   // menuItems for the page
-  reports: Report[] = [];
+  menuItems: Menuitem[] = [];
   displayedColumns: string[] = [
-      'purchaseCount',
+    'id',
     'menuItem_title',
+    'description',
     'price',
-    'created_date',
+    'last_update',
+    'action',
   ];
   dataSource!: MatTableDataSource<any>;
 
@@ -35,21 +39,35 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let parsedMenuItems: Menuitem[] = [];
+    const currentDate = new Date();
+    const lastWeekDate = new Date(currentDate.getTime()
+        - 7 * 24 * 60 * 60 * 1000);
+    this.getMenuItems().subscribe(menuItems => {
+      menuItems.forEach(menuItem => {
+        let parsedId = menuItem._links.self.href.split("/")[5];
+        menuItem.id = parseInt(parsedId);
+        if (menuItem.last_update != null && menuItem.last_update > lastWeekDate){
+          const index = menuItems.indexOf(menuItem);
+          console.log(index)
+          menuItems.splice(index, 1)
+        }
+      });
+      this.menuItems = menuItems;
 
-    this.getReport().subscribe(reports => {
-      this.reports = reports;
-      this.dataSource = new MatTableDataSource(reports);
+      this.dataSource = new MatTableDataSource(menuItems);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
 
 
+
   }
 
-  getReport(): Observable<Report[]> {
-    return this.http.get<ReportApiResponse>(this.reportUrl)
+  getMenuItems(): Observable<Menuitem[]> {
+    return this.http.get<MenuItemApiResponse>(this.menuItemUrl)
         .pipe(
-            map(response => response._embedded.reports)
+            map(response => response._embedded.menuItems)
         )
   }
 }
