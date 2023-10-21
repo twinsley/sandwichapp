@@ -16,7 +16,7 @@ import { CustomerApiResponse } from 'src/app/model/customer-api-response';
 })
 export class ViewCustomerComponent implements OnInit {
 
-  customerUrl = 'http://localhost:8080/api/customers'
+  customerUrl = '/api/customers'
 
   customers: Customer[] = [];
 

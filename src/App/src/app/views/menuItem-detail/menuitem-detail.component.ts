@@ -22,7 +22,7 @@ import {CartDto} from "../../model/dto/cart-dto.model";
 })
 export class MenuitemDetailComponent implements OnInit {
 
-  menuItemUrl = 'http://localhost:8080/api/menuItems';
+  menuItemUrl = '/api/menuItems';
 
   menuItem: Menuitem = new Menuitem("", "", 0, "", new Date(), new Date(), { self: { href: "" }});
   menuItemId: number = 0;

@@ -20,10 +20,10 @@ import {ToppingDto} from "../../model/dto/topping-dto";
 })
 export class ToppingDetailComponent implements OnInit {
 
-  menuItemUrl: string = 'http://localhost:8080/api/menuItems';
-  toppingsUrl = "http://localhost:8080/api/toppings/";
-  cartItemsUrl: string = 'http://localhost:8080/api/cartItems';
-  cartsUrl = "http://localhost:8080/api/carts";
+  menuItemUrl: string = '/api/menuItems';
+  toppingsUrl = "/api/toppings/";
+  cartItemsUrl: string = '/api/cartItems';
+  cartsUrl = "/api/carts";
   cartUrl: string = '';
   cartId: number = 0;
 

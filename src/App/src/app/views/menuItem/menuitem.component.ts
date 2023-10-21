@@ -28,9 +28,9 @@ import {CustomerApiResponse} from "../../model/customer-api-response";
 export class MenuitemComponent implements OnInit {
 
   // urls
-  menuItemUrl = 'http://localhost:8080/api/menuItems';
-  cartsUrl = 'http://localhost:8080/api/carts';
-  customerUrl = "http://localhost:8080/api/customers";
+  menuItemUrl = '/api/menuItems';
+  cartsUrl = '/api/carts';
+  customerUrl = "/api/customers";
 
   // menuItems for the page
   menuItems: Menuitem[] = [];

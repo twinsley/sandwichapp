@@ -46,6 +46,43 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>initialize</phase>
+						<configuration>
+							<executable>npm</executable>
+							<workingDirectory>src/App</workingDirectory>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>build Angular production code</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<executable>npm</executable>
+							<workingDirectory>src/App</workingDirectory>
+							<arguments>
+								<argument>run</argument>
+								<argument>build</argument>
+								<argument>--prod</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
@@ -57,6 +94,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 

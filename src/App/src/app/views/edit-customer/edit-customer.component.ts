@@ -19,9 +19,9 @@ import { StateApiResponse } from 'src/app/model/state-api-response';
 
 export class EditCustomerComponent implements OnInit {
 
-  customerUrl = 'http://localhost:8080/api/customers';
-  countryUrl = 'http://localhost:8080/api/countries';
-  stateUrl = 'http://localhost:8080/api/states';
+  customerUrl = '/api/customers';
+  countryUrl = '/api/countries';
+  stateUrl = '/api/states';
 
   countries: Country[] = [];
   states: State[] = [];

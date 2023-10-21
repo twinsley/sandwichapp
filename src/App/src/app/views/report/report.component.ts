@@ -18,7 +18,7 @@ import {MenuItemApiResponse} from '../../model/menuItem-api-reponse';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  menuItemUrl = 'http://localhost:8080/api/menuItems';
+  menuItemUrl = '/api/menuItems';
 
   // menuItems for the page
   menuItems: Menuitem[] = [];

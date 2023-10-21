@@ -10,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MenuEditDetailComponent implements OnInit {
     menuForm: FormGroup;
-    menuItemUrl = 'http://localhost:8080/api/menuItems';
+    menuItemUrl = '/api/menuItems';
 
     constructor(
         private http: HttpClient,

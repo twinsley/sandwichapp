@@ -27,9 +27,9 @@ import {CartItemDto} from "../../model/dto/cart-item-dto";
 export class CartSummaryComponent implements OnInit {
 
   cartItemsUrl = "";
-  checkoutUrl = "http://localhost:8080/api/checkout/purchase";
-  customerUrl = "http://localhost:8080/api/customers";
-  cartsUrl = "http://localhost:8080/api/carts"
+  checkoutUrl = "/api/checkout/purchase";
+  customerUrl = "/api/customers";
+  cartsUrl = "/api/carts"
   cartId = 0;
 
   cartItems: CartItem[] = [];

@@ -20,7 +20,7 @@ import {MenuEditDetailComponent} from "../menu-edit-detail/menu-edit-detail.comp
 })
 export class MenuEditComponent implements OnInit {
   // urls
-  menuItemUrl = 'http://localhost:8080/api/menuItems';
+  menuItemUrl = '/api/menuItems';
 
   // menuItems for the page
   menuItems: Menuitem[] = [];

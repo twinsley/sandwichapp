@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/d288-front-end",
+            "outputPath": "../main/resources/static",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -32,8 +32,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "50mb",
+                  "maximumError": "100mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "d288-front-end:build:production"
+              "browserTarget": "front-end:build:production"
             },
             "development": {
-              "browserTarget": "d288-front-end:build:development"
+              "browserTarget": "front-end:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "d288-front-end:build"
+            "browserTarget": "front-end:build"
           }
         },
         "test": {

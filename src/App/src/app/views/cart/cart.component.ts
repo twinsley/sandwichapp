@@ -26,9 +26,9 @@ import {ToppingDto} from "../../model/dto/topping-dto";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartsUrl = "http://localhost:8080/api/carts";
+  cartsUrl = "/api/carts";
   cartItemsUrl = "";
-  customerUrl = "http://localhost:8080/api/customers/1";
+  customerUrl = "/api/customers/1";
 
   cartId = 0;
   cartItems: CartItem[] = [];

@@ -18,7 +18,7 @@ import {Menuitem} from 'src/app/model/menuItem';
 })
 export class ToppingComponent implements OnInit {
 
-  menuItemUrl = 'http://localhost:8080/api/menuItems/';
+  menuItemUrl = '/api/menuItems/';
   toppings: Topping[] = [];
   menuItemId: number = 0;
   menuItemTitle: string = ''
