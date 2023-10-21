@@ -14,11 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MenuitemComponent } from './views/menuItem/menuItem.component';
-import { MenuitemDetailComponent } from './views/menuItem-detail/menuItem-detail.component';
+import { MenuitemComponent } from './views/menuItem/menuitem.component';
+import { MenuitemDetailComponent } from './views/menuItem-detail/menuitem-detail.component';
 import { ToppingComponent } from './views/topping/topping.component';
 import { ToppingDetailComponent } from './views/topping-detail/topping-detail.component';
 import { CartComponent } from './views/cart/cart.component';
@@ -85,7 +85,8 @@ import {MatSortModule} from "@angular/material/sort";
     MatSortModule
   ],
   providers: [
-    PurchaseDataService
+    PurchaseDataService,
+    {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MenuitemComponent } from './views/menuItem/menuItem.component';
-import { MenuitemDetailComponent } from './views/menuItem-detail/menuItem-detail.component';
+import { MenuitemComponent } from './views/menuItem/menuitem.component';
+import { MenuitemDetailComponent } from './views/menuItem-detail/menuitem-detail.component';
 import { ToppingComponent } from './views/topping/topping.component';
 import { ToppingDetailComponent } from './views/topping-detail/topping-detail.component';
 import { ViewCustomerComponent } from './views/view-customer/view-customer.component';
