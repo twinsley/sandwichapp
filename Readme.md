@@ -16,7 +16,7 @@ Installation of this app has a few prerequisites listed below that need to be co
 ### Installation
 
 To install the app, we will need to build it, package it into a container, then push the container to the registry. After doing that we will be able to create the Web App Service and deploy the container. Follow the steps below for this process.
-1. Run the DatabaseSetup.sql script on your database to set up the schema and load sample data.
+1. Run the data.sql script on your database to load sample data if needed.
 2. Run the BuildScript.ps1 script. It will ask for the container registry name, then have you log in to Azure. After you do that it will run a build, package it, and upload it to the Azure Container Registry.
 3. Go to the Resource Group you intend to host the app in, click Create, and search for Web App for Containers, then select it. Set your app name and configure the instance to be a Linux OS for Docker containers
 4. Go to the Docker tab and set the source to be your Azure Container Registry, and select the image., then click Review + Create
